@@ -22,3 +22,7 @@ Users can also use a **Picker** to change the look of their feed and their choic
 A **Notification** should be sent to the user whenever they receive a 'like' on their post from another user
 
 Any of our operations involving **Room** will make use of **AsyncTasks** and a post should always be encompassed into a single **Card** no matter which viewing style the users likes
+
+Below are sketches of what the three different viewing styles should look like
+
+![alt text](https://github.com/KernelFailure/fundamentals_prep/blob/master/ViewStyles.PNG)
