@@ -11,13 +11,13 @@ The key concepts that this app makes use of are:
 * Notifications
 * Shared Preferences
 * Room 
-* Pickers
+* Spinner
 
 The general outline of the app is as follows.  Users can post content to the database and scroll through content posted by other users.
 
 A post contains at minimum a title, but can also include a description and post image.  Users can delete and edit posts that they have previously posted and other users can like posts (sticking only to 'likes' for now.  No commenting or downvoting, etc. as that is out of scope)
 
-Users can also use a **Picker** to change the look of their feed and their choice should be stored in the **Shared Preferences** so that users don't have to set the feed to their preferred style every time they open the app
+Users can also use a **Spinner** to change the look of their feed and their choice should be stored in the **Shared Preferences** so that users don't have to set the feed to their preferred style every time they open the app
 
 A **Notification** should be sent to the user whenever they receive a 'like' on their post from another user
 
