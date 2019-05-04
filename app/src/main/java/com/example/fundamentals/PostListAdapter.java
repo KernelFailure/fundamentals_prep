@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostViewHolder> {
@@ -15,16 +17,19 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
     private final LayoutInflater mInflater;
     private List<Post> mPosts;
     private int mLayout = 0;
+    private Context mContext;
 
     public PostListAdapter(Context context, List<Post> posts) {
         mInflater = LayoutInflater.from(context);
         mPosts = posts;
+        mContext = context;
     }
 
     public PostListAdapter(Context context, List<Post> mPosts, int mLayout) {
         this.mInflater = LayoutInflater.from(context);
         this.mPosts = mPosts;
         this.mLayout = mLayout;
+        mContext = context;
     }
 
     @NonNull
@@ -46,11 +51,19 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
 
         if (mPosts != null) {
             Post post = mPosts.get(i);
-            postViewHolder.tvTitle.setText("Title: " + post.getTitle());
-            postViewHolder.tvUsername.setText("Username: " + post.getUsername());
-            postViewHolder.tvDescription.setText(post.getDescription());
-            postViewHolder.tvDateCreated.setText(post.getDateCreated());
-            postViewHolder.tvPicturePath.setText(post.getPicturePath());
+            if (mLayout == 0 || mLayout == R.layout.layout_post_list_item_graphic) {
+                postViewHolder.tvTitle.setText(post.getTitle());
+                Glide.with(mContext).load(post.getPicturePath()).into(postViewHolder.ivGraphic);
+            } else if (mLayout == R.layout.layout_post_list_item_thumbnail) {
+                postViewHolder.tvTitle.setText(post.getTitle());
+                postViewHolder.tvUsername.setText(post.getUsername());
+                Glide.with(mContext).load(post.getPicturePath()).into(postViewHolder.ivThumbnail);
+            } else if (mLayout == R.layout.layout_post_list_item_verbose) {
+                postViewHolder.tvTitle.setText(post.getTitle());
+                postViewHolder.tvUsername.setText(post.getUsername());
+                postViewHolder.tvPicturePath.setText(post.getPicturePath());
+                postViewHolder.tvDescription.setText(post.getDescription());
+            }
         }
 
     }
@@ -63,6 +76,8 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
     class PostViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView tvTitle, tvUsername, tvDescription, tvDateCreated, tvPicturePath;
+        private final SquareImageView ivGraphic;
+        private final SquareImageViewHeight ivThumbnail;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +86,8 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
             this.tvDescription = itemView.findViewById(R.id.tvDescription);
             this.tvDateCreated = itemView.findViewById(R.id.tvDateCreated);
             this.tvPicturePath = itemView.findViewById(R.id.tvPicturePath);
+            this.ivGraphic = itemView.findViewById(R.id.ivMain);
+            this.ivThumbnail = itemView.findViewById(R.id.ivThumbnail);
         }
     }
 }
