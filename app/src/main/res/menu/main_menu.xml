@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/graphic"
+        android:title="Graphic View"
+        android:background="#ff00" />
+
+    <item
+        android:id="@+id/thumbnail"
+        android:title="Thumbnail View"
+        android:background="#ff00"/>
+
+    <item
+        android:id="@+id/verbose"
+        android:title="Verbose View"
+        android:background="#ff00"/>
+
+</menu>
